@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-	$token  = new \Tmdb\ApiToken('3a4addf1cb610f970f9c3fe19b3b9c69');
+	$token  = new \Tmdb\ApiToken(env('TMBD_KEY'));
 	$client = new \Tmdb\Client($token);
 
 	$repository = new \Tmdb\Repository\MovieRepository($client);
