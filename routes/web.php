@@ -29,7 +29,7 @@ Route::get('/', function () {
 		$movie->fullBackdropPath = $imageHelper->getUrl($movie->getBackdropPath(), 'w1000');
 
 		$guzzle = new \GuzzleHttp\Client();
-		$res = $guzzle->request('GET', 'https://count.donreach.com/?url=http://www.imdb.com/title/' . $movie->getImdbId());
+		$res = $guzzle->request('GET', 'http://graph.facebook.com/?id=http://www.imdb.com/title/' . $movie->getImdbId());
 		$shares = json_decode($res->getBody());
 		$movie->social = $shares;
 
