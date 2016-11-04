@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/start', function () {
+	return view('welcome');
+});
+
 Route::get('/', function () {
 	$token  = new \Tmdb\ApiToken(env('TMBD_KEY'));
 	$client = new \Tmdb\Client($token);

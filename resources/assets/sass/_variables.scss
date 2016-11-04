@@ -1,6 +1,12 @@
 
 // Body
-$body-bg: #f5f8fa;
+$body-bg: #ffffff;
+
+$black: #000000;
+$gray: #f0eeee;
+$white: #ffffff;
+$pink: #fe7992;
+$overlay: rgba(0, 0, 0, 0.5);
 
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
