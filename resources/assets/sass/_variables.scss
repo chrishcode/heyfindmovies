@@ -8,6 +8,14 @@ $white: #ffffff;
 $pink: #fe7992;
 $overlay: rgba(0, 0, 0, 0.5);
 
+@mixin transition($duration) {
+    -webkit-transition: $duration;
+    -moz-transition: $duration;
+    -ms-transition: $duration;
+    -o-transition: $duration;
+    transition: $duration;
+}
+
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
 $list-group-border: $laravel-border-color;

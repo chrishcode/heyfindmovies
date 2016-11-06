@@ -19,11 +19,11 @@
     </head>
     <body>
         <div class="top-bar">
-            <div class="ui container">
+            <div class="ui container top-bar-container">
                 <div class="logo">
                     <p><span>Hey</span>FindMovies</p>
                 </div>
-                {{-- <p>Gilla på facebook</p> --}}
+                <p class="facebook">Gilla på facebook</p>
             </div>
         </div>
 
@@ -35,7 +35,7 @@
 
         <div class="ui container">
             <div class="sort-menu">
-                <button class="ui button">POPULAR</button>
+                <button class="ui button sort-active">POPULAR</button>
                 <button class="ui button">RATING</button>
                 <button class="ui button">YEAR</button>
                 <button class="ui button">RUNTIME</button>
@@ -48,14 +48,14 @@
                     </div>
                 </div>
                 
-
                 <div class="content">
+                    <div class="shares"><div><i class="heart icon"></i>20888</div></div>
                     <h3>Doctor Strange (2016)</h3>
-                    <div class="meta">
+                    {{-- <div class="meta">
                         <span class="date">Drama, Comedy</span>
-                    </div>
+                    </div> --}}
                     <div class="description">
-                        After his career is destroyed, a brilliant but arrogant surgeon gets a new lease on life when a sorcerer takes him under his wing and trains him to defend the world against evil.
+                        After his career is destroyed, a brilliant but arrogant surgeon gets a new lease on life when a sorcerer takes him under his wing and trains him to defend the world against evil.After his career is destroyed, a brilliant but arrogant surgeon gets a new lease on life when a sorcerer takes him under his wing and trains him to defend the world against evil.
                     </div>
                 </div>
             </div>

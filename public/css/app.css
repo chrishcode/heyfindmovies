@@ -5787,10 +5787,26 @@ p {
 .ui .button {
   font-family: 'Open Sans Condensed', sans-serif;
   border-radius: 100px;
-  padding: 11px 20px 11px 20px;
-  background-color: #f0eeee;
+  padding: 9px 18px 9px 18px;
+  background-color: transparent;
   width: 100px;
-  font-size: 14px; }
+  font-size: 14px;
+  border: 2px solid #f0eeee;
+  color: #B4B4B4;
+  -webkit-transition: 0.2s;
+  transition: 0.2s; }
+
+.ui .button:hover {
+  background-color: transparent;
+  border: 2px solid #fe7992;
+  color: #fe7992; }
+
+.ui .button:active {
+  opacity: 0.8; }
+
+.sort-menu .sort-active {
+  border: 2px solid #fe7992;
+  color: #fe7992; }
 
 .ui .card {
   border: 2px solid #f0eeee;
@@ -5799,7 +5815,37 @@ p {
   margin: 0; }
 
 .ui .card:hover {
-  opacity: 0.5; }
+  /*opacity: 0.5;*/ }
+
+.ui .card .content .description {
+  height: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.shares {
+  font-family: 'Open Sans Condensed', sans-serif;
+  border-radius: 100px;
+  padding: 9px 18px 9px 18px;
+  background-color: #ffffff;
+  width: 50%;
+  height: 30px;
+  font-size: 14px;
+  border: 2px solid #fe7992;
+  color: #fe7992;
+  margin: 0 auto;
+  margin-top: -30px;
+  margin-bottom: -10px;
+  box-shadow: 0 1px 0 5px #ffffff;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  font-weight: 700; }
 
 .card-image-wrap {
   width: 100%;
@@ -5827,6 +5873,18 @@ p {
   align-items: center;
   -webkit-box-pack: justify;
   justify-content: space-between; }
+
+.top-bar .top-bar-container {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center; }
+
+.facebook {
+  margin-left: auto; }
 
 .logo {
   color: #fe7992; }
@@ -5871,15 +5929,14 @@ p {
       color: #ffffff; }
 
 .sort-menu {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   flex-direction: row;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 50px 0px 50px 0px; }
 
 /*# sourceMappingURL=app.css.map */
