@@ -5810,6 +5810,7 @@ p {
 
 .ui .card {
   border: 2px solid #f0eeee;
+  border-radius: 5px;
   box-shadow: none;
   width: 340px;
   height: 400px;
@@ -5843,7 +5844,12 @@ p {
     flex-direction: row;
     -webkit-box-pack: center;
     justify-content: center;
-    width: 25%; }
+    width: 30%;
+    font-weight: 700;
+    color: #C6C6C6; }
+
+.ui.card .extra, .ui.cards .card .extra {
+  border-top: none !important; }
 
 .shares {
   font-family: 'Open Sans Condensed', sans-serif;

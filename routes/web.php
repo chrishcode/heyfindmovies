@@ -11,6 +11,12 @@
 |
 */
 
+Route::get('/movie', function () {
+	$movie = App\Movie::find(21);
+	$movie->movie = unserialize(base64_decode($movie->movie));
+	return $movie;
+});
+
 Route::get('/start', function () {
 	return view('welcome');
 });
@@ -47,9 +53,59 @@ Route::get('/', function () {
 			$movie = null;
 		}
 
+		// // Get movie social shares
+		$movie->socialShares = $movie->social->share->share_count;
+
+		// // Get movie iTunes url
+		$movie->iTunesUrl = $movie->iTunes['results'][0]['trackViewUrl'];
+
+		// Get movie cast
+		$cast = [];
+		foreach ($movie->getCredits()->getCast() as $key => $castMember) {
+			$castMember->fullProfilePath = $imageHelper->getUrl($castMember->getProfilePath(), 'w500');
+			array_push($cast, $castMember);
+		}
+		$movie->fullCast = $cast;
+
+		// Get similar movies
+		$similar = [];
+		foreach ($movie->getSimilar() as $key => $similarMovie) {
+			array_push($similar, $similarMovie);
+		}
+		$movie->fullSimilar = $similar;
+		
+
+		// Get movie reviews
+		$reviews = [];
+		foreach ($movie->getReviews() as $key => $review) {
+			array_push($reviews, $review);
+		}
+		$movie->fullReviews = $reviews;
+
+		// Get movie videos
+		$videos = [];
+		foreach ($movie->getVideos() as $key => $video) {
+			array_push($videos, $video);
+		}
+		$movie->fullVideos = $videos;
+
 		array_push($movies, $movie);
 	}
-	// $movies[13]->iTunes['results'][0]['trackViewUrl'] Get movie iTunes url
+
+	foreach ($movies as $movie) {
+		$movie = [
+			'movie' => base64_encode(serialize($movie)),
+			'tmdb_id' => $movie->getId(),
+			'social_shares' => 0,
+			'release_date' => $movie->getReleaseDate()->date,
+			'popularity' => $movie->getPopularity(),
+			'vote_average' => $movie->getVoteAverage()
+		];
+
+		App\Movie::create($movie);
+	}
+	
 	return dd($movies);
-    // return view('welcome');
 });
+
+// OBS!!!! Movie objektet fakkar. Gör som du tänkte från början: -Spara genres, credits, similar o.s.v. som serialized arrays i databasen (Så slipper man kopplingstabeller)

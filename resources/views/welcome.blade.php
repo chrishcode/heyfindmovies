@@ -35,10 +35,10 @@
 
         <div class="ui container">
             <div class="sort-menu">
-                <button class="ui button sort-active"><div><i class="heart icon"></i>POPULAR</div></button>
+                <button class="ui button sort-active"><div><i class="facebook square icon"></i>TRENDING</div></button>
+                <button class="ui button"><div><i class="calendar outline icon"></i>LATEST</div></button>
+                <button class="ui button"><div><i class="heart icon"></i>POPULAR</div></button>
                 <button class="ui button"><div><i class="star icon"></i>RATING</div></button>
-                <button class="ui button"><div><i class="calendar outline icon"></i>YEAR</div></button>
-                <button class="ui button"><div><i class="hourglass empty icon"></i>RUNTIME</div></button>
             </div>
 
             <div class="cards">
@@ -61,20 +61,16 @@
                     </div>
                     <div class="extra content">
                         <div>
+                          <i class="calendar outline icon"></i>
+                          2016
+                        </div>
+                        <div>
                           <i class="heart icon"></i>
                           7
                         </div>
                         <div>
                           <i class="star icon"></i>
                           6.8
-                        </div>
-                        <div>
-                          <i class="calendar outline icon"></i>
-                          2016
-                        </div>
-                        <div>
-                          <i class="hourglass empty icon"></i>
-                          120 min
                         </div>
                     </div>
                 </div>

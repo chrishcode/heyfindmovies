@@ -59,6 +59,7 @@ p {
 
 .ui .card {
 	border: 2px solid $gray;
+	border-radius: 5px;
 	box-shadow: none;
 	width: 340px;
 	height: 400px;
@@ -87,8 +88,14 @@ p {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
-		width: 25%;
+		width: 30%;
+		font-weight: 700;
+		color: #C6C6C6;
 	}
+}
+
+.ui.card .extra, .ui.cards .card .extra {
+	border-top: none !important;
 }
 
 .shares {
