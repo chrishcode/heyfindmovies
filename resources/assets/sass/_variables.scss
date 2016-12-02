@@ -8,6 +8,7 @@ $white: #ffffff;
 $pink: #fe7992;
 $facebook-blue: #3B5998;
 $overlay: rgba(0, 0, 0, 0.5);
+$detail-overlay: rgba(255, 255, 255, 0.8);
 
 @mixin transition($duration) {
     -webkit-transition: $duration;
