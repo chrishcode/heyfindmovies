@@ -3,9 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-        <title>HeyFindMovies</title>
+        <title>HeyPregnancyFood</title>
 
         <!-- Semantic UI -->
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('semantic/dist/semantic.min.css') }}">
@@ -21,16 +22,16 @@
         <div class="top-bar">
             <div class="ui container top-bar-container">
                 <div class="logo">
-                    <p><span>Hey</span>FindMovies</p>
+                    <p><span>Hey</span>Pregnancy Food</p>
                 </div>
                 <p class="facebook">Gilla på facebook</p>
             </div>
         </div>
 
         <div class="header-image">
-            <div class="header-text"><h2>Find movies trending on facebook.</h2></div>
+            <div class="header-text"><h2>Find pregnancy food trending on facebook.</h2></div>
 
-            <img src="https://images.unsplash.com/photo-1461151304267-38535e780c79?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=6c6352ec73bb4dcb7b612aca32fd244f">
+            <img src="https://images.unsplash.com/photo-1479803244419-b24dfe9cbafa?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=">
         </div>
 
         <div class="ui container">

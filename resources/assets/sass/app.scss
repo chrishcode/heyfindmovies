@@ -165,7 +165,7 @@ p {
 		align-items: center;
 	    
 	    span {
-	    	color: $black;
+	    	color: #858585;
 	    	font-size: 18px;
 	    	margin-right: 5px;
 	    }
@@ -198,6 +198,7 @@ p {
 
 		h2 {
 			color: $white;
+			text-align: center;
 		}
 	}
 }
@@ -234,7 +235,7 @@ p {
 
 .big-image {
 	width: 100%;
-	height: 400px;
+	height: 300px;
 	background-color: $gray;
 	border-radius: 5px;
 	margin-top: 50px;
@@ -244,12 +245,13 @@ p {
 
 		img {
 			width: 100%;
+			height: auto;
 		}
 }
 
 .big-image-overlay {
 	width: 100%;
-	height: 400px;
+	height: 100%;
 	background-color: $detail-overlay;
 	position: absolute;
 	display: flex;
@@ -259,7 +261,7 @@ p {
 
 .big-image-img {
 	width: 100%;
-	height: 400px;
+	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -267,10 +269,42 @@ p {
 
 .ui.card.detail-card {
 	align-items: center;
-	margin-left: 50px;
-	margin-top: -250px;
+	/*margin-left: 50px;*/
+	margin: 0 auto;
+	margin-top: -240px;
+
+	.content {
+		width: 100%;
+
+		.shares {
+			width: 200px;
+		}
+
+		.price {
+			display: flex;
+			width: 100%;
+			justify-content: center;
+			margin-top: 20px;
+
+			h1 {
+				color: #E2303E;
+			}
+		}
+	}
 }
 
 .card-image-wrap.detail-card-image-wrap {
 	height: 100%;
+}
+
+.shares.detail-shares {
+	/*margin-top: -100px;*/
+}
+
+.reviews {
+	border: none;
+	width: 100%;
+	height: 700px;
+	border-radius: 5px;
+	border: 2px solid $gray;
 }
