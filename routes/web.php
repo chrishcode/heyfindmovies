@@ -13,7 +13,7 @@
 
 Route::get('/movie', function () {
 	$movie = App\Movie::find(21);
-	$movie->movie = unserialize(base64_decode($movie->movie));
+	$movie->movie = unserialize($movie->movie);
 	return $movie;
 });
 
@@ -38,26 +38,26 @@ Route::get('/', function () {
 		$movie->fullPosterPath = $imageHelper->getUrl($movie->getPosterPath(), 'w500');
 		$movie->fullBackdropPath = $imageHelper->getUrl($movie->getBackdropPath(), 'w1000');
 
-		$guzzle = new \GuzzleHttp\Client();
-		$res = $guzzle->request('GET', 'http://graph.facebook.com/?id=http://www.imdb.com/title/' . $movie->getImdbId());
-		$shares = json_decode($res->getBody());
-		$movie->social = $shares;
+		// $guzzle = new \GuzzleHttp\Client();
+		// $res = $guzzle->request('GET', 'http://graph.facebook.com/?id=http://www.imdb.com/title/' . $movie->getImdbId());
+		// $shares = json_decode($res->getBody());
+		// $movie->social = $shares;
 
-		$res = $guzzle->request('GET', 'https://itunes.apple.com/search?term=' . $movie->getOriginalTitle() . '&entity=movie&limit=1');
-		$iTunesMovie = json_decode($res->getBody(), true);
-		if ($iTunesMovie['resultCount'] > 0) {
-			$iTunesMovie['results'][0]['trackViewUrl'] .= '&at=123456';
-			$movie->iTunes = $iTunesMovie;
-		}
-		if ($iTunesMovie['resultCount'] < 1) {
-			$movie = null;
-		}
+		// $res = $guzzle->request('GET', 'https://itunes.apple.com/search?term=' . $movie->getOriginalTitle() . '&entity=movie&limit=1');
+		// $iTunesMovie = json_decode($res->getBody(), true);
+		// if ($iTunesMovie['resultCount'] > 0) {
+		// 	$iTunesMovie['results'][0]['trackViewUrl'] .= '&at=123456';
+		// 	$movie->iTunes = $iTunesMovie;
+		// }
+		// if ($iTunesMovie['resultCount'] < 1) {
+		// 	$movie = null;
+		// }
 
-		// // Get movie social shares
-		$movie->socialShares = $movie->social->share->share_count;
+		// // // Get movie social shares
+		// $movie->socialShares = $movie->social->share->share_count;
 
-		// // Get movie iTunes url
-		$movie->iTunesUrl = $movie->iTunes['results'][0]['trackViewUrl'];
+		// // // Get movie iTunes url
+		// $movie->iTunesUrl = $movie->iTunes['results'][0]['trackViewUrl'];
 
 		// Get movie cast
 		$cast = [];
@@ -84,7 +84,8 @@ Route::get('/', function () {
 
 		// Get movie videos
 		$videos = [];
-		foreach ($movie->getVideos() as $key => $video) {
+		foreach ($movie->getVideos() as $video) {
+			$video = 'http://www.youtube.com/watch?v=' . $video->getKey();
 			array_push($videos, $video);
 		}
 		$movie->fullVideos = $videos;
@@ -94,10 +95,10 @@ Route::get('/', function () {
 
 	foreach ($movies as $movie) {
 		$movie = [
-			'movie' => base64_encode(serialize($movie)),
+			'movie' => serialize($movie->fullVideos),
 			'tmdb_id' => $movie->getId(),
 			'social_shares' => 0,
-			'release_date' => $movie->getReleaseDate()->date,
+			'release_date' => $movie->getReleaseDate()->format('Y-m-d h:m:s'),
 			'popularity' => $movie->getPopularity(),
 			'vote_average' => $movie->getVoteAverage()
 		];
@@ -105,7 +106,7 @@ Route::get('/', function () {
 		App\Movie::create($movie);
 	}
 	
-	return dd($movies);
+	return dd($movies[1]);
 });
 
 // OBS!!!! Movie objektet fakkar. Gör som du tänkte från början: -Spara genres, credits, similar o.s.v. som serialized arrays i databasen (Så slipper man kopplingstabeller)
