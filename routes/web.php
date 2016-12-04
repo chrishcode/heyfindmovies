@@ -24,9 +24,11 @@ Route::get('/start', function () {
 Route::get('/detail', function () {
 	return view('detail');
 });
+
 use ApaiIO\Configuration\GenericConfiguration;
-	use ApaiIO\Operations\Search;
-	use ApaiIO\ApaiIO;
+use ApaiIO\Operations\Search;
+use ApaiIO\ApaiIO;
+
 Route::get('/', function () {
 	
 
@@ -43,14 +45,35 @@ Route::get('/', function () {
 	$apaiIO = new ApaiIO($conf);
 
 	$search = new Search();
-	$search->setCategory('All');
-	$search->setKeywords('harry potter');
+	$search->setCategory('Grocery');
+	$search->setKeywords('pregnancy food');
 	$search->setPage(1);
 	$search->setResponseGroup(array('ItemAttributes', 'Images', 'EditorialReview', 'Reviews', 'Variations'));
 
 	$formattedResponse = $apaiIO->runOperation($search);
 
-	return response($formattedResponse)->header('Content-Type', 'text/xml');
+	// return response($formattedResponse)->header('Content-Type', 'text/xml');
+	// $formattedResponse = file_get_contents($formattedResponse);
+	$formattedResponse = simplexml_load_string($formattedResponse);
+
+	$products = [];
+
+	foreach ($formattedResponse->Items->Item as $item) {
+		$product = [
+			'title' => $item->ItemAttributes->Title->__toString(),
+			'description' => null,
+			'price' => null,
+			'reviews' => null,
+			'amazon_url' => null,
+			'image_url' => $item->ImageSets->ImageSet
+		];
+		array_push($products, $product);
+	}
+
+	// return dd($formattedResponse->Items->Item[1]);
+	return dd($products);
+
+	return dd($formattedResponse);
 });
 
 // Route::get('/', function () {
