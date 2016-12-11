@@ -5787,38 +5787,48 @@ p {
 .ui .button {
   font-family: 'Open Sans Condensed', sans-serif;
   border-radius: 100px;
-  padding: 9px 18px 9px 18px;
-  background-color: transparent;
+  padding: 9px 10px 9px 10px;
+  background-color: #f0eeee;
   width: 120px;
   font-size: 14px;
-  border: 2px solid #f0eeee;
+  /*border: 2px solid $gray;*/
   color: #B4B4B4;
   -webkit-transition: 0.2s;
   transition: 0.2s; }
 
 .ui .button:hover {
-  background-color: transparent;
-  border: 2px solid #fe7992;
-  color: #fe7992; }
+  background-color: #374B61;
+  /*border: 2px solid $pink;*/
+  color: #ffffff; }
 
 .ui .button:active {
   opacity: 0.8; }
 
 .sort-menu .sort-active {
-  border: 2px solid #fe7992;
-  color: #fe7992; }
+  /*border: 2px solid $pink;*/
+  background-color: #374B61;
+  color: #ffffff; }
 
 .ui .card {
   border: 2px solid #f0eeee;
   border-radius: 5px;
   box-shadow: none;
-  width: 340px;
-  height: 320px;
+  width: 300px;
+  height: 380px;
   margin: 0;
   -webkit-box-flex: 1;
   flex-grow: 1;
-  margin: 0px 20px 20px 0px;
+  margin: 0px 40px 40px 0px;
   /*max-width: 500px;*/ }
+  .ui .card .price {
+    display: -webkit-box;
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin-top: 20px; }
+    .ui .card .price h1 {
+      color: #E2303E; }
 
 .ui .card:hover {
   /*opacity: 0.5;*/ }
@@ -5835,18 +5845,22 @@ p {
   -webkit-box-direction: normal;
   flex-direction: row;
   -webkit-box-pack: justify;
-  justify-content: space-between; }
-  .ui .card .extra div {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    flex-direction: row;
-    -webkit-box-pack: center;
-    justify-content: center;
-    width: 30%;
-    font-weight: 700;
-    color: #C6C6C6; }
+  justify-content: space-between;
+  /*div {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		width: 30%;
+		font-weight: 700;
+		color: #C6C6C6;
+	}*/
+  height: 55px; }
+  .ui .card .extra .ui.button {
+    width: 50%; }
+
+.ui.button.amazon-btn:hover {
+  background-color: #374B61;
+  color: #ffffff; }
 
 .ui.card .extra, .ui.cards .card .extra {
   border-top: none !important; }
@@ -5980,7 +5994,7 @@ p {
   flex-wrap: wrap;
   -webkit-box-pack: justify;
   justify-content: space-between;
-  margin: 0px -20px 0px 0px; }
+  margin: 0px -40px 0px 0px; }
 
 .ui.button.load-more {
   display: block;
@@ -6035,8 +6049,9 @@ p {
   align-items: center;
   /*margin-left: 50px;*/
   margin: 0 auto;
-  margin-top: -240px;
-  margin-bottom: 70px; }
+  margin-top: -238px;
+  margin-bottom: 70px;
+  width: 500px; }
   .ui.card.detail-card .content {
     width: 100%; }
     .ui.card.detail-card .content .shares {
@@ -6050,6 +6065,11 @@ p {
       margin-top: 20px; }
       .ui.card.detail-card .content .price h1 {
         color: #E2303E; }
+
+.ui.card.detail-card .content {
+  height: 90px; }
+  .ui.card.detail-card .content .ui.button {
+    width: 100%; }
 
 .card-image-wrap.detail-card-image-wrap {
   height: 100%; }
@@ -6065,6 +6085,7 @@ p {
   width: 100%;
   height: 700px;
   border-radius: 5px;
-  border: 2px solid #f0eeee; }
+  border: 2px solid #f0eeee;
+  position: relative; }
 
 /*# sourceMappingURL=app.css.map */

@@ -33,19 +33,19 @@ p {
 .ui .button {
 	font-family: 'Open Sans Condensed', sans-serif;
 	border-radius: 100px;
-	padding: 9px 18px 9px 18px;
-	background-color: transparent;
+	padding: 9px 10px 9px 10px;
+	background-color: $gray;
 	width: 120px;
 	font-size: 14px;
-	border: 2px solid $gray;
+	/*border: 2px solid $gray;*/
 	color: #B4B4B4;
 	@include transition(.2s);
 }
 
 .ui .button:hover {
-	background-color: transparent;
-	border: 2px solid $pink;
-	color: $pink;
+	background-color: #374B61;
+	/*border: 2px solid $pink;*/
+	color: $white;
 }
 
 .ui .button:active {
@@ -53,20 +53,32 @@ p {
 }
 
 .sort-menu .sort-active {
-	border: 2px solid $pink;
-	color: $pink;
+	/*border: 2px solid $pink;*/
+	background-color: #374B61;
+	color: $white;
 }
 
 .ui .card {
 	border: 2px solid $gray;
 	border-radius: 5px;
 	box-shadow: none;
-	width: 340px;
-	height: 320px;
+	width: 300px;
+	height: 380px;
 	margin: 0;
 	flex-grow: 1;
-	margin: 0px 20px 20px 0px;
+	margin: 0px 40px 40px 0px;
 	/*max-width: 500px;*/
+
+	.price {
+			display: flex;
+			width: 100%;
+			justify-content: center;
+			margin-top: 20px;
+
+			h1 {
+				color: #E2303E;
+			}
+	}
 }
 
 .ui .card:hover {
@@ -84,14 +96,24 @@ p {
 	flex-direction: row;
 	justify-content: space-between;
 
-	div {
+	/*div {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		width: 30%;
 		font-weight: 700;
 		color: #C6C6C6;
+	}*/
+	height: 55px;
+
+	.ui.button {
+		width: 50%;
 	}
+}
+
+.ui.button.amazon-btn:hover {
+	background-color: #374B61;
+	color: $white;
 }
 
 .ui.card .extra, .ui.cards .card .extra {
@@ -217,7 +239,7 @@ p {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	margin: 0px -20px 0px 0px;
+	margin: 0px -40px 0px 0px;
 }
 
 .ui.button.load-more {
@@ -272,8 +294,9 @@ p {
 	align-items: center;
 	/*margin-left: 50px;*/
 	margin: 0 auto;
-	margin-top: -240px;
+	margin-top: -238px;
 	margin-bottom: 70px;
+	width: 500px;
 
 	.content {
 		width: 100%;
@@ -295,6 +318,14 @@ p {
 	}
 }
 
+.ui.card.detail-card .content {
+	height: 90px;
+
+	.ui.button {
+		width: 100%;
+	}	
+}
+
 .card-image-wrap.detail-card-image-wrap {
 	height: 100%;
 }
@@ -313,4 +344,5 @@ p {
 	height: 700px;
 	border-radius: 5px;
 	border: 2px solid $gray;
+	position: relative;
 }

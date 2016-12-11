@@ -16,6 +16,9 @@
             <div class="shares"><div><i class="facebook square icon"></i>5,215 shares</div></div>
             <div class="price"><h1>$29.99</h1></div>
         </div>
+        <div class="extra content">
+          <button class="ui button amazon-btn"><i class="amazon icon"></i>Get it on Amazon</button>
+        </div>
     </div>
 
     
@@ -29,7 +32,7 @@
         Power up with our delicious soft-baked fiber bars—a purse staple that's great for helping to round out your prenatal nutrition needs each day.Thoughtfully made with gluten-free whole grain oats, blueberries, beets and a bevy of essential nutrients—including DHA, Choline and Calcium—these delicious snacks offer the extra nutrition you and your growing babe need during this special time of development.
       </div>
 
-      <iframe class="reviews" src="https://www.amazon.com/reviews/iframe?akid=AKIAIQZS2SS6JBUK4ZPQ&alinkCode=xm2&asin=1338099132&atag=associate_tag&exp=2016-12-05T22%3A03%3A12Z&v=2&sig=5T5WCYR7VNrBIjB17kdvvLX%2BuyStYErpxxXtZD070uU%3D"></iframe>
+      <iframe class="reviews" src="https://www.amazon.com/reviews/iframe?akid=AKIAIQZS2SS6JBUK4ZPQ&alinkCode=xm2&asin=1338099132&atag=associate_tag&exp=2016-12-20T22%3A03%3A12Z&v=2&sig=5T5WCYR7VNrBIjB17kdvvLX%2BuyStYErpxxXtZD070uU%3D"></iframe>
     </div>
   </div>
 </div>

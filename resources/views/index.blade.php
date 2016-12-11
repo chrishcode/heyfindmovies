@@ -18,6 +18,7 @@
         
         <div class="content">
             <div class="shares"><div><i class="facebook square icon"></i>20,888 likes</div></div>
+            {{-- <div class="price"><h1>$29.99</h1></div> --}}
             <h3>Bumpboosters Pregnancy Cookies - Oatmeal Chocolate Chip - 2 oz - 12 ct</h3>
             {{-- <div class="meta">
                 <span class="date">Drama, Comedy</span>
@@ -40,6 +41,10 @@
               6.8
             </div>
         </div> --}}
+        <div class="extra content">
+          <a class="ui button" href="{{ url('/detail') }}"><i class="info circle icon"></i>More</a>
+          <a class="ui button amazon-btn" href="{{ url('/detail') }}"><i class="amazon icon"></i>Get it on Amazon</a>
+        </div>
     </div>
     <div class="ui card">
         <div class="card-image-wrap">
