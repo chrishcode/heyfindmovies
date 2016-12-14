@@ -9,12 +9,14 @@
 	<div class="ui card detail-card">
         <div class="card-image-wrap detail-card-image-wrap">
             <div class="image">
+                <div class="floating ui circular label price-tag">$29.99</div>
                 <img src="https://images-na.ssl-images-amazon.com/images/I/71oGeDtQHhL._SL1300_.jpg">
             </div>
         </div>
         <div class="content">
             <div class="shares"><div><i class="facebook square icon"></i>5,215 shares</div></div>
-            <div class="price"><h1>$29.99</h1></div>
+            {{-- <h3>Happy Baby Happy Mama Prenatal Organic Soft-Baked Oat Bars Pregnancy Snack, Blueberry/Beet, 5 Count</h3> --}}
+            {{-- <div class="price"><h1>$29.99</h1></div> --}}
         </div>
         <div class="extra content">
           <button class="ui button amazon-btn"><i class="amazon icon"></i>Get it on Amazon</button>
