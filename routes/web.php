@@ -18,7 +18,9 @@
 // });
 
 Route::get('/start', function () {
-	return view('index');
+	$products = App\Product::orderBy('fb_shares', 'desc')->paginate(9);
+
+	return view('index', compact('products', $products));
 });
 
 Route::get('/detail', function () {
@@ -45,10 +47,10 @@ Route::get('/', function () {
 	$apaiIO = new ApaiIO($conf);
 
 	$search = new Search();
-	$search->setCategory('Grocery');
-	$search->setKeywords('pregnancy food');
+	$search->setCategory('All');
+	$search->setKeywords('chocolate');
 	$search->setPage(1);
-	$search->setResponseGroup(array('ItemAttributes', 'Images', 'EditorialReview', 'Reviews', 'Variations'));
+	$search->setResponseGroup(array('ItemAttributes', 'Images', 'EditorialReview', 'Reviews', 'Variations', 'Offers'));
 
 	$formattedResponse = $apaiIO->runOperation($search);
 
@@ -59,21 +61,111 @@ Route::get('/', function () {
 	$products = [];
 
 	foreach ($formattedResponse->Items->Item as $item) {
-		$product = [
-			'title' => $item->ItemAttributes->Title->__toString(),
-			'description' => null,
-			'price' => null,
-			'reviews' => null,
-			'amazon_url' => null,
-			'image_url' => $item->ImageSets->ImageSet
-		];
-		array_push($products, $product);
+		if ($item->Variations) {
+			$title = $item->Variations->Item[0]->ItemAttributes->Title->__toString();
+
+			$features = [];
+			foreach ($item->Variations->Item[0]->ItemAttributes->Feature as $feature) {
+				array_push($features, $feature->__toString());
+			}
+
+			if ($item->Variations->Item[0]->Offers->Offer) {
+				$price = $item->Variations->Item[0]->Offers->Offer->OfferListing->Price->FormattedPrice->__toString();
+			}
+			else {
+				$price = null;
+			}
+
+			if ($item->Variations->Item[0]->ImageSets->ImageSet[count($item->Variations->Item[0]->ImageSets->ImageSet) - 1]->HiResImage) {
+				$imageUrl = $item->Variations->Item[0]->ImageSets->ImageSet[count($item->Variations->Item[0]->ImageSets->ImageSet) - 1]->HiResImage->URL->__toString();
+			}
+			else {
+				$imageUrl = $item->Variations->Item[0]->ImageSets->ImageSet[count($item->Variations->Item[0]->ImageSets->ImageSet) - 1]->LargeImage->URL->__toString();
+			}
+
+			$reviews = $item->CustomerReviews->IFrameURL->__toString();
+
+			$amazonUrl = $item->DetailPageURL->__toString();
+
+			$product = [
+				'title' => $title,
+				'description' => $features,
+				'price' => $price,
+				'reviews' => $reviews,
+				'amazon_url' => $amazonUrl,
+				'image_url' => $imageUrl
+			];
+			array_push($products, $product);
+		}
+		else {
+			$title = $item->ItemAttributes->Title->__toString();
+
+			$features = [];
+			foreach ($item->ItemAttributes->Feature as $feature) {
+				array_push($features, $feature->__toString());
+			}
+
+			if ($item->Offers->Offer) {
+				$price = $item->Offers->Offer->OfferListing->Price->FormattedPrice->__toString();
+			}
+			else {
+				$price = null;
+			}
+
+			if ($item->ImageSets->ImageSet[count($item->ImageSets->ImageSet) - 1]->HiResImage) {
+				$imageUrl = $item->ImageSets->ImageSet[count($item->ImageSets->ImageSet) - 1]->HiResImage->URL->__toString();
+			}
+			else {
+				$imageUrl = $item->ImageSets->ImageSet[count($item->ImageSets->ImageSet) - 1]->LargeImage->URL->__toString();
+			}
+
+			$reviews = $item->CustomerReviews->IFrameURL->__toString();
+
+			$amazonUrl = $item->DetailPageURL->__toString();
+
+			$product = [
+				'title' => $title,
+				'description' => $features,
+				'price' => $price,
+				'reviews' => $reviews,
+				'amazon_url' => $amazonUrl,
+				'image_url' => $imageUrl
+			];
+			array_push($products, $product);
+		}
+	}
+
+	$amazonUrls = '';
+	foreach ($products as $product) {
+		$amazonUrls .= strtok($product['amazon_url'], '%') . ',';
+	}
+	$amazonUrls =  rtrim($amazonUrls, ',');
+
+	$fbShares = [];
+	$res = $client->request('GET', 'http://graph.facebook.com/?ids=' . $amazonUrls);
+	$shares = json_decode($res->getBody());
+	foreach ($shares as $share) {
+		if (isset($share->share)) {
+			array_push($fbShares, (string) $share->share->share_count);
+		}
+		else {
+			array_push($fbShares, '0');
+		}
+	}
+	for ($i = 0; $i < count($products); $i++) { 
+		$products[$i]['fb_shares'] = $fbShares[$i];
+	}
+
+	foreach ($products as $product) {
+		if (!in_array(null, $product)) {
+    		App\Product::create($product);
+  		}
 	}
 
 	// return dd($formattedResponse->Items->Item[1]);
-	return dd($products);
 
-	return dd($formattedResponse);
+	return dd($products);
+	// return dd($formattedResponse);
 });
 
 // Route::get('/', function () {
