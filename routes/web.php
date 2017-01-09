@@ -23,8 +23,10 @@ Route::get('/start', function () {
 	return view('index', compact('products', $products));
 });
 
-Route::get('/detail', function () {
-	return view('detail');
+Route::get('/{id}', function ($id) {
+	$product = App\Product::find($id);
+
+	return view('detail', compact('product', $product));
 });
 
 use ApaiIO\Configuration\GenericConfiguration;
@@ -49,7 +51,7 @@ Route::get('/', function () {
 	$search = new Search();
 	$search->setCategory('All');
 	$search->setKeywords('chocolate');
-	$search->setPage(1);
+	$search->setPage(2);
 	$search->setResponseGroup(array('ItemAttributes', 'Images', 'EditorialReview', 'Reviews', 'Variations', 'Offers'));
 
 	$formattedResponse = $apaiIO->runOperation($search);

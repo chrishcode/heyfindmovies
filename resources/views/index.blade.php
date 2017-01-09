@@ -22,7 +22,7 @@
             <h3>{{ $product->title }}</h3>
         </div>
         <div class="extra content">
-          <a class="ui button" href="{{ url('/detail') }}"><i class="info circle icon"></i>Details</a>
+          <a class="ui button" href="{{ url($product->id) }}"><i class="info circle icon"></i>Details</a>
           <a class="ui button amazon-btn" href="{{ url($product->amazon_url) }}"><i class="amazon icon"></i>Get it on Amazon</a>
         </div>
     </div>
